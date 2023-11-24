@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+p#error-message{
+    padding:0 5px;
+    border-radius:5px;
+    line-height:50px;
+    text-wrap:wrap;
+}
+
+@media (min-width: 992px) {
+    #form-fieldset {
+        width: 45% !important;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width:991px){
+    #form-fieldset {
+        width: 75% !important;
+    }
+}
+
+
+@media (max-width: 767px) {
+    #form-fieldset {
+        width: 100% !important;
+    }
+}
