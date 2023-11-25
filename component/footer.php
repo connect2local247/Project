@@ -45,7 +45,7 @@
                     <div class="list-group col-lg-3 d-flex align-items-center flex-column">
                         <form action="" class="d-flex flex-column align-items-center" style="gap:10px">
                         <h1 class="fs-3">Rate Us</h1>
-                        <?php if(!isset($_SESSION['ENCRYPTION-KEY'])){ $_SESSION['ENCRYPTION-KEY'] = uniqid(); } ?>
+                        <?php $_SESSION['ENCRYPTION-KEY'] = uniqid(); ?>
                         <ul class="nav d-flex fs-3 list-unstyled" style="gap:10px;">
                             <li><i class="fa-regular fa-star"></i></li>
                             <li><i class="fa-regular fa-star"></i></li>
