@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="register-option" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -93,11 +94,20 @@
             </div>
             <button id="btn-signup" class="text-white text-center bg-primary bg-gradient" style="position:absolute;left:0;bottom:0;border:.1px solid grey; width:100%;padding:8px 5px; margin-bottom:.7px;" data-bs-target ="#register-option" data-bs-toggle="modal">Register</button>
         </div>
-      <?php 
+
+        <?php
+        session_start();
+
+        require "./includes/delete_info.php";
+
+        if(isset($_SESSION['greet-message'])){
+            unset($_SESSION['greet-message']);
+        }
+
         if(isset($_SESSION['registered'])){
         echo <<<EOD
                 <script>
-                    btn = document.getElementById('btn-signup');
+                    var btn = document.getElementById('btn-signup');
                     btn.innerHTML = "Logout";
                     btn.removeAttribute("data-bs-toggle");
                     btn.removeAttribute("data-bs-target");
@@ -110,11 +120,13 @@
         } else{
             echo <<<EOD
                 <script>
-                    btn = document.getElementById('btn-signup');
-                    btn.innerHTML = "Register";
+                    var btn = document.getElementById('btn-signup');
+                    // btn.innerHTML = "Register";
                     btn.setAttribute("data-bs-toggle","modal");
                     btn.setAttribute("data-bs-target","#register-option");
                 </script>
             EOD;
         }
-        ?>   
+
+
+?>

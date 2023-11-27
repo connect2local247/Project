@@ -1,35 +1,35 @@
 <?php
-        session_start();
+        // session_start();
 
-        require "./includes/delete_info.php";
+        // require "./includes/delete_info.php";
 
-        if(isset($_SESSION['greet-message'])){
-            unset($_SESSION['greet-message']);
-        }
+        // if(isset($_SESSION['greet-message'])){
+        //     unset($_SESSION['greet-message']);
+        // }
 
-        if(isset($_SESSION['registered'])){
-        echo <<<EOD
-                <script>
-                    btn = document.getElementById('btn-signup');
-                    btn.innerHTML = "Logout";
-                    btn.removeAttribute("data-bs-toggle");
-                    btn.removeAttribute("data-bs-target");
-                    btn.addEventListener('click', function() {
-                        window.location.href = "/connect2local/user/customer/activities/logout/logout.php";
-                    });
-                </script>
-        EOD;
-            reset_session();
-        } else{
-            echo <<<EOD
-                <script>
-                    btn = document.getElementById('btn-signup');
-                    btn.innerHTML = "Register";
-                    btn.setAttribute("data-bs-toggle","modal");
-                    btn.setAttribute("data-bs-target","#register-option");
-                </script>
-            EOD;
-        }
+        // if(isset($_SESSION['registered'])){
+        // echo <<<EOD
+        //         <script>
+        //             btn = document.getElementById('btn-signup');
+        //             btn.innerHTML = "Logout";
+        //             btn.removeAttribute("data-bs-toggle");
+        //             btn.removeAttribute("data-bs-target");
+        //             btn.addEventListener('click', function() {
+        //                 window.location.href = "/connect2local/user/customer/activities/logout/logout.php";
+        //             });
+        //         </script>
+        // EOD;
+        //     reset_session();
+        // } else{
+        //     echo <<<EOD
+        //         <script>
+        //             btn = document.getElementById('btn-signup');
+        //             btn.innerHTML = "Register";
+        //             btn.setAttribute("data-bs-toggle","modal");
+        //             btn.setAttribute("data-bs-target","#register-option");
+        //         </script>
+        //     EOD;
+        // }
 
 
 ?>
