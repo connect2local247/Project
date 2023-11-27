@@ -1,7 +1,7 @@
 <?php
         session_start();
         
-        include "../../../../../includes/email_sending.php";
+        include "../../../../../email_sending.php";
         include "../../../../../includes/code_generator.php";
 
         if(isset($_SESSION['error'])){

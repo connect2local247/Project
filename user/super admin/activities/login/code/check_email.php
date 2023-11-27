@@ -2,7 +2,7 @@
     session_start();
 
     require "../../../../../includes/db_connection.php";
-    require "../../../../../includes/email_sending.php";
+    require "../../../../../email_sending.php";
 
     if(isset($_SESSION['error'])){
         unset($_SESSION['error']);
