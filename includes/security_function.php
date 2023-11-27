@@ -1,7 +1,8 @@
 <?php
+    require "code_generator.php";
 
-    require "db_connection.php";
-
+    $key = generateSecurityKey();
+    $iv = openssl_random_pseudo_bytes(16);
     function encryptData($data, $key, $iv) {
         $cipher = "aes-256-cbc";
         $options = OPENSSL_RAW_DATA;
@@ -15,25 +16,5 @@
         $options = OPENSSL_RAW_DATA;
         $decrypted = openssl_decrypt(base64_decode($data), $cipher, $key, $options, $iv);
         return $decrypted;
-    }
-
-    function customer_sensitive_data($address,$contact,$email,$password,$key,$iv){
-            $email_query = "SELECT C_EMAIL from customer_register where C_EMAIL = '$email'";
-            $address_query = "SELECT C_ADDRESS from customer_register where C_ADDRESS = '$address'";
-            $password_query = "SELECT C_PASSWORD from customer_register where C_PASSWORD = '$password'";
-            $contact_query = "SELECT C_CONTACT from customer_register where C_CONTACT = '$contact'";
-
-            $email_result = mysqli_query($GLOBALS['connect'],$email_query);
-
-            if(mysqli_num_rows($result) > 0){
-                encryptedData($email,$key,$iv);
-            }
-
-            $address_result = mysqli_query($GLOBALS['connect'],$address_query);
-
-            if(mysqli_num_rows($address_result)){
-                
-            }
-
     }
 ?>

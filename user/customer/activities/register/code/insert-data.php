@@ -37,7 +37,14 @@
             $term_agree = $_SESSION['agree-terms'];
             
 
-            $query = "INSERT INTO `customer_register`(`C_FNAME`, `C_LNAME`, `C_BIRTH_DATE`, `C_AGE`, `C_GENDER`, `C_CONTACT`, `C_EMAIL`, `C_PASSWORD`, `C_ADDRESS`, `C_CITY`, `C_PINCODE`, `C_STATE`, `C_EMAIL_VERIFIED`, `C_AGREE_TERM`, `JOIN_DATE`) VALUES ('$fname','$lname','$birth_date',$age,'$gender','$phone','$email','$password','$address','$city','$pincode','$state','$email_verified','$term_agree',NOW())";
+            // Encrypted Data
+
+            $encryptAddress = encryptData($address,$GLOBALS['key'],$GLOBALS['iv']);
+            $encryptPhone = encryptData($phone,$GLOBALS['key'],$GLOBALS['iv']);
+            $encryptEmail = encryptData($email,$GLOBALS['key'],$GLOBALS['iv']);
+            $encryptPassword = encryptData($password,$GLOBALS['key'],$GLOBALS['iv']);
+
+            $query = "INSERT INTO `customer_register`(`C_FNAME`, `C_LNAME`, `C_BIRTH_DATE`, `C_AGE`, `C_GENDER`, `C_CONTACT`, `C_EMAIL`, `C_PASSWORD`, `C_ADDRESS`, `C_CITY`, `C_PINCODE`, `C_STATE`, `C_EMAIL_VERIFIED`, `C_AGREE_TERM`, `JOIN_DATE`) VALUES ('$fname','$lname','$birth_date',$age,'$gender','$encryptPhone','$encryptEmail','$encryptPassword','$encryptAddress','$city','$pincode','$state','$email_verified','$term_agree',NOW())";
 
 
             $query_run = mysqli_query($GLOBALS['connect'],$query);
