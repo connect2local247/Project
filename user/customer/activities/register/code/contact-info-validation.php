@@ -1,7 +1,8 @@
 <?php
        session_start();
        
-       require_once "../../../../../includes/db_connection.php";
+       require "../../../../../includes/db_connection.php";
+       require "../../../../../includes/security_function.php";
 
 
        if(isset($_SESSION['error'])){
@@ -57,8 +58,8 @@
        }
 
        function check_exist_detail($phone, $email) {
-        $email_query = "SELECT C_EMAIL FROM customer_register WHERE C_EMAIL = '$email'";
-        $contact_query = "SELECT C_CONTACT FROM customer_register WHERE C_CONTACT = '$phone'";
+        $email_query = "SELECT C_EMAIL FROM customer_register WHERE C_EMAIL = AES_ENCRYPT('$email', '{$GLOBALS['key']}')";
+        $contact_query = "SELECT C_PHONE FROM customer_register WHERE C_PHONE = AES_ENCRYPT('$phone','{$GLOBALS['key']}')";
     
         $email_result = mysqli_query($GLOBALS['connect'], $email_query);
         $contact_result = mysqli_query($GLOBALS['connect'], $contact_query);

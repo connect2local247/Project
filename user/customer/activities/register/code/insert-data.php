@@ -44,7 +44,7 @@
             $encryptEmail = encryptData($email,$GLOBALS['key'],$GLOBALS['iv']);
             $encryptPassword = encryptData($password,$GLOBALS['key'],$GLOBALS['iv']);
 
-            $query = "INSERT INTO `customer_register`(`C_FNAME`, `C_LNAME`, `C_BIRTH_DATE`, `C_AGE`, `C_GENDER`, `C_CONTACT`, `C_EMAIL`, `C_PASSWORD`, `C_ADDRESS`, `C_CITY`, `C_PINCODE`, `C_STATE`, `C_EMAIL_VERIFIED`, `C_AGREE_TERM`, `JOIN_DATE`) VALUES ('$fname','$lname','$birth_date',$age,'$gender','$encryptPhone','$encryptEmail','$encryptPassword','$encryptAddress','$city','$pincode','$state','$email_verified','$term_agree',NOW())";
+            $query = "INSERT INTO `customer_register`(`C_FNAME`, `C_LNAME`, `C_BIRTH_DATE`, `C_AGE`, `C_GENDER`, `C_PHONE`, `C_EMAIL`, `C_PASSWORD`, `C_ADDRESS`, `C_CITY`, `C_PINCODE`, `C_STATE`, `C_EMAIL_VERIFIED`, `C_AGREE_TERM`,`IV`,`JOIN_DATE`) VALUES ('$fname','$lname','$birth_date',$age,'$gender','$encryptPhone','$encryptEmail','$encryptPassword','$encryptAddress','$city','$pincode','$state','$email_verified','$term_agree','{$GLOBALS['iv']}',NOW())";
 
 
             $query_run = mysqli_query($GLOBALS['connect'],$query);

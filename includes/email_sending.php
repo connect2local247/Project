@@ -4,7 +4,9 @@
         use PHPMailer\PHPMailer\Exception;
         
         //Load Composer's autoloader
-        require 'C:/xampp/htdocs/connect2local/vendor/autoload.php';
+        require '../../vendor/autoload.php';
+
+
         
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);

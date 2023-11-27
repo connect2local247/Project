@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    require "../../../includes/security_function.php";
+    require "../../../includes/db_connection.php";
+    require "../../../includes/time_elapse.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +17,31 @@
 </head>
 <body style="background-color:powderblue">
         
+        <div class="modal fade" id="notificationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-bg-white">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="notificationModalLabel">Notification</h1>
+                        <i class="fa-solid fa-xmark fs-5" data-bs-dismiss="modal"></i>
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                            $currentTime = "2023-11-27 9:30:00";
+                            echo "<div class='d-flex text-bg-white shadow bg-body-tertiary border p-2 rounded position-relative'>
+                                <div class='ms-2 d-flex flex-column' style='gap:4px'> 
+                                    <i id='userId' style='font-size:14px; font-weight:bold'><img src='/connect2local/asset/image/about/user/admin.png' height='45' width='45' class='rounded-circle'> bhavesh_1724</i>
+                                    <p id='notification-content' style='text-align:justify'>congratulation you have succesfully registerd on our site free for to use our platform i hope our platform is useful for you and you get what you want. </p>
+                                </div>     
+                                <div id='notification-time' class='position-absolute bottom-0 end-0 p-2'>
+                                    ".time_elapsed_string($currentTime)."
+                                </div>                      
+                            </div>";
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <header class="position-relative">
         <nav class="navbar text-bg-dark" style="height:70px">
             <div class="container">
@@ -22,7 +54,7 @@
                     </div>
                     <div class="menu-icon d-flex fs-4" style="gap:10px;">
                         <i class="fa-solid fa-user"></i>
-                        <i class="fa-solid fa-bell"></i>
+                        <i class="fa-solid fa-bell" data-bs-target="#notificationModal" data-bs-toggle="modal"></i>
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
             </div>
