@@ -2,7 +2,7 @@
 function requestNotificationPermission() {
     Notification.requestPermission().then(permission => {
         if (permission === 'granted') {
-            showNotification('Local Notification', 'This is a test notification!');
+            showNotification('Local Notification', '<h1>This is a test notification!');
         }
     });
 }

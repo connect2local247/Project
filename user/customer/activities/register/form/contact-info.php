@@ -98,7 +98,30 @@
                 </div>
                 
                 <div class="col-6">
-                    <input type="text" class="form-control" name="state" placeholder="State" value="<?php if (isset($_SESSION['state'])) echo $_SESSION['state']; ?>" required>
+                <select class="form-select" name="state" required>
+                    <option value="" disabled selected>Select state</option>
+                    <?php
+                    // Array of Indian states
+                    $indianStates = array(
+                        'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat',
+                        'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra',
+                        'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+                        'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands',
+                        'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu', 'Lakshadweep', 'Delhi', 'Puducherry'
+                    );
+
+                    // Loop through the array to generate options
+                    foreach ($indianStates as $state) {
+                        echo '<option value="' . $state . '"';
+                        // Check if the state is selected (adjust this part based on your session variable)
+                        if (isset($_SESSION['state']) && $_SESSION['state'] === $state) {
+                            echo ' selected';
+                        }
+                        echo '>' . $state . '</option>';
+                    }
+                    ?>
+                </select>
+
                 </div>
             </div>
 

@@ -6,7 +6,7 @@
     <title>Local Business - Term & Condition</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/local business/CSS/style.css">
+    <link rel="stylesheet" href="/connect2local/asset/css/style.css">
 
     <style>
         p.term-content{
@@ -28,7 +28,7 @@
     <header>
             <?php
                 
-                include "../../component/navbar.php";
+                include "../../component/nav.php";
             ?>
     </header>
     <div class="container p-2">

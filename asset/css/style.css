@@ -4,12 +4,18 @@
     box-sizing: border-box;
 }
 
+#btn-signup{
+    background:linear-gradient(orange,red) !important;   
+}
+
 p#error-message{
     padding:0 5px;
     border-radius:5px;
     line-height:50px;
     text-wrap:wrap;
 }
+
+
 
 @media (min-width: 992px) {
     #form-fieldset {

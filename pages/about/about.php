@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
     <title>Connect2Local - About Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/local business/CSS/style.css">
+    <link rel="stylesheet" href="/connect2local/asset/css/style.css">
 
     <style>
         section.intro-content{
@@ -18,12 +21,12 @@
 <body>
     
     <header>
-        <?php
-            include "../../component/navbar.php";
-        ?> 
+            <?php
+                include "../../component/nav.php";
+            ?> 
     </header>
     <section class="intro-content" >
-        <div class="container d-flex justify-content-center align-items-center text-white" style="width:100%; height:calc(100vh - 80px)">
+        <div class="container d-flex justify-content-center align-items-center text-white" style="width:100%;height:calc(100vh - 80px);s">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-10">
                     <h1>About Us</h1>

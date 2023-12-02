@@ -2,19 +2,19 @@
        session_start();
        
        require "../../../../../includes/db_connection.php";
+       require "../../../../../includes/fetch_data_function.php";
        require "../../../../../includes/security_function.php";
 
 
        if(isset($_SESSION['error'])){
            unset($_SESSION['error']);
        }
-       function check_pattern($phone,$email,$address,$city,$pincode,$state){
+       function check_pattern($phone,$email,$address,$city,$pincode){
         $phone_pattern = '/^\d{10}$/';
         $email_pattern = '/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
         $address_pattern = '/^[A-Za-z ]+$/';
         $city_pattern = '/^[A-Za-z ]+$/';
         $pincode_pattern = '/^\d{6}$/';
-        $state_pattern = '/^[A-Za-z ]+$/';
 
             if(preg_match($phone_pattern,$phone)){
                 
@@ -25,12 +25,7 @@
                         if(preg_match($city_pattern,$city)){
                 
                             if(preg_match($pincode_pattern,$pincode)){
-                
-                                    if(preg_match($state_pattern,$state)){
-                                         return true;
-                                    } else{        
-                                        $_SESSION['error'] = "State Name Doesn't exists.";
-                                    }
+                                        return true;
                                 } else{        
                                     $_SESSION['error'] = "Postal Code Doesn't exists.";
                                 }
@@ -58,23 +53,36 @@
        }
 
        function check_exist_detail($phone, $email) {
-        $email_query = "SELECT C_EMAIL FROM customer_register WHERE C_EMAIL = AES_ENCRYPT('$email', '{$GLOBALS['key']}')";
-        $contact_query = "SELECT C_PHONE FROM customer_register WHERE C_PHONE = AES_ENCRYPT('$phone','{$GLOBALS['key']}')";
+        // $email_query = "SELECT C_EMAIL FROM customer_register WHERE C_EMAIL = AES_ENCRYPT('$email', '{$GLOBALS['key']}')";
+        // $contact_query = "SELECT C_PHONE FROM customer_register WHERE C_PHONE = AES_ENCRYPT('$phone','{$GLOBALS['key']}')";
+        // $email_result = mysqli_query($GLOBALS['connect'], $email_query);
+        // $contact_result = mysqli_query($GLOBALS['connect'], $contact_query);
     
-        $email_result = mysqli_query($GLOBALS['connect'], $email_query);
-        $contact_result = mysqli_query($GLOBALS['connect'], $contact_query);
+        // if (mysqli_num_rows($email_result) > 0) {
+        //     $_SESSION['error'] = "Email Already Exists";
+        //     return false;
+        // }
     
-        if (mysqli_num_rows($email_result) > 0) {
-            $_SESSION['error'] = "Email Already Exists";
+        // if (mysqli_num_rows($contact_result) > 0) {
+        //     $_SESSION['error'] = "Phone number Already Exists.";
+        //     return false;
+        // }
+    
+        // return true;
+
+        if(find_data($email,"customer_register","C_ID","C_EMAIL","C_KEY")){
+            $_SESSION['error'] = "Email Already Exist";
             return false;
         }
-    
-        if (mysqli_num_rows($contact_result) > 0) {
-            $_SESSION['error'] = "Phone number Already Exists.";
+
+        if(find_data($phone,"customer_register","C_ID","C_PHONE","C_KEY")){
+            $_SESSION['error'] = "Phone Number Already Exist";
             return false;
         }
-    
+
         return true;
+
+
     }
     
        if(isset($_POST['submit'])){

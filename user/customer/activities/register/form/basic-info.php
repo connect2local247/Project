@@ -17,6 +17,63 @@
 </head>
 <body class="d-flex flex-column" style="height:100vh;width:100%">
 
+    <div class="modal fade" id="helpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="helpModalLabel">Help</h1>
+                <i class="fa-solid fa-xmark fs-5" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body">
+            <iframe class="rounded-3" style="width:100%;height:200px" src="https://www.youtube.com/embed/CO7voe1wmhA?si=s_tXODBoCTNNv2XC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p style='text-align:justify;padding:3px 5px'>
+                In Connect2Local, we collect your basic information like your name,surname,birth date and gender for the purpose of to create your customer profile and check your eligibility to use our platform. above video is on how to register as customer in connect2local if you have any trouble with filling up the information in form then you can checkout and solve and also understand the register process via video.
+            </p>
+            <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Index</th>
+                        <th>Field</th>
+                        <th>Data</th>
+                        <th>Format</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="even-row">
+                        <td>1</td>
+                        <td>First Name</td>
+                        <td>Your Name</td>
+                        <td>Name first letter must be capital and only within 15 letters allowed.</td>
+                    </tr>
+                    <tr class="odd-row">
+                        <td>2</td>
+                        <td>Last Name</td>
+                        <td>Surname</td>
+                        <td>Surname first letter must be capital and only within 15 letters allowed.</td>
+                    </tr>
+                    <tr class="even-row">
+                        <td>3</td>
+                        <td>Birth Date</td>
+                        <td>Date of Birth</td>
+                        <td>Birth Date must enter in mm/dd/yyyy format, and your age must be 18 or above.</td>
+                    </tr>
+                    <tr class="odd-row">
+                        <td>4</td>
+                        <td>Gender</td>
+                        <td>Your Gender</td>
+                        <td>Select your gender from the option according to your type.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
 
     <form action="/connect2local/user/customer/activities/register/code/basic-info-validation.php" method="post" class="p-2 d-flex flex-column justify-content-center align-items-center" style="height:80vh;width:100%">
     <div class="my-4">
@@ -70,9 +127,11 @@
             
         </div>
     </div>
-        <fieldset class="border p-4 rounded" id="form-fieldset">
+        <fieldset class="border p-4 rounded position-relative" id="form-fieldset">
             <legend class="h2 fw-bold text-center mb-4">Basic Information</legend>
-            
+            <div class="position-absolute end-0 top-0 me-4 mt-3">
+                <i class="fa-solid fa-circle-info fs-4 text-primary" data-bs-target="#helpModal" data-bs-toggle="modal"></i>
+            </div>
             <div class="row my-2">
                 <div class="col-6">
                     <input type="text" class="form-control" name="fname" placeholder="First Name" value="<?php if (isset($_SESSION['fname'])) echo $_SESSION['fname']; ?>" required>
@@ -108,5 +167,6 @@
     include "../../../../../component/form-footer.php";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+            include "table_creation.php";
 
             $server = "localhost";
             $username = "root";
@@ -12,5 +13,4 @@
             } else{
                 die($connect);
             }
-            return false;
 ?>
