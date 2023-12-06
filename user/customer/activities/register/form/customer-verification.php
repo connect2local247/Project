@@ -10,8 +10,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/connect2local/asset/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
 </head>
 <body id="form-body"  style="height:100vh;width:100%">
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background:linear-gradient(#040014,#0B1419)">
+            <div class="modal-body rounded" >
+            <div id="animation container" class="m-auto" style="height:50px;width:50px">
+                <script>
+                    var animation = bodymovin.loadAnimation({
+                        container : document.getElementById('animation container'),
+                        loop:false,
+                        autoplay:true,
+                        rendor:'svg',
+                        path:"/connect2local/asset/animation/success.json",
+                        name:"demo animation",
+                        background:"transparent"
+                    })
+                </script>
+            </div>
+            <div id="greet-message" class="d-none text-center text-white"><?php if(isset($_SESSION['greet-message'])) echo $_SESSION['greet-message'];?></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    
 <div class="modal fade" id="verificationHelpModal" aria-hidden="true" aria-labelledby="verificationHelpModalLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content" id="help-modal-bg">
@@ -51,18 +78,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-            <div class="modal-body text-bg-dark rounded">
-            <div class="spinner-border text-primary d-flex m-auto" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div id="greet-message" class="d-none text-center"><i class="fa-solid fa-check text-white rounded-circle bg-gradient" style="padding:5px; background-color:royalblue"></i><?php if(isset($_SESSION['greet-message'])) echo $_SESSION['greet-message'];?></div>
-            </div>
-            </div>
-        </div>
-    </div>
+    
             <?php
                     if(isset($_SESSION['greet-message'])){
 
@@ -70,25 +86,24 @@
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 var successModal = new bootstrap.Modal(document.getElementById('exampleModalToggle'));
-                                var spinner = document.querySelector('.spinner-border');
+                                var animation = document.getElementById('animation container');
                                 var greetMessage = document.querySelector('#greet-message');
                                 let modalBody = document.querySelector('.modal-body');
                                 successModal.show();
                                 
                                 setTimeout(function () {
                                     // spinner.style.display = 'none';
-                                    modalBody.removeChild(spinner);
+                                    modalBody.removeChild(animation);
                                     greetMessage.classList.remove('d-none');
-                                }, 3000); // Close the modal after 3 seconds (3000 milliseconds)
+                                }, 2500); // Close the modal after 3 seconds (3000 milliseconds)
                                 
                                 setTimeout(function(){
                                     window.location.href='/connect2local/user/customer/activities/register/verification/email-verification-code.php';
-                                },5000);
+                                },3000);
                             });
                             </script>";
                             
                             unset($_SESSION['greet-message']);
-                            unset($_SESSION['error']);
                         }
                             
             ?>

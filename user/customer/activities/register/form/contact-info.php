@@ -11,9 +11,44 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/connect2local/asset/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- <style>
+        #error-message {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.5s ease, height 0.5s ease;
+}
+
+#error-message.hidden {
+    opacity: 0;
+    height: 0;
+}
+    </style> -->
 </head>
 <body class="d-flex flex-column" id="form-body" style="height:100vh;width:100%">
-   
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background:linear-gradient(#040014,#0B1419)">
+            <div class="modal-body rounded" >
+            <div id="animation container" class="m-auto" style="height:50px;width:50px">
+                <script>
+                    var animation = bodymovin.loadAnimation({
+                        container : document.getElementById('animation container'),
+                        loop:false,
+                        autoplay:true,
+                        rendor:'svg',
+                        path:"/connect2local/asset/animation/success.json",
+                        name:"demo animation",
+                        background:"transparent"
+                    })
+                </script>
+            </div>
+            <div id="greet-message" class="d-none text-center text-white"><?php if(isset($_SESSION['greet-message'])) echo $_SESSION['greet-message'];?></div>
+            </div>
+            </div>
+        </div>
+    </div>
 <div class="modal fade" id="contactInfoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="contactInfoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content" id="help-modal-bg">
@@ -133,56 +168,80 @@
 
     <form action="/connect2local/user/customer/activities/register/code/contact-info-validation.php" method="POST" class="p-2 d-flex flex-column align-items-center justify-content-center" style="height:90vh;width:100%;">
     <div class="my-4">
-        <?php
-        if (isset($_SESSION['error'])) {
-            $error = $_SESSION['error'];
-            echo "<p id='error-message' class='text-bg-dark text-center p-2 rounded m-auto' style='line-height:30px'><i class='fa-solid fa-triangle-exclamation text-warning px-1 fs-5'></i> $error</p>";
-        } else{  
-            if(isset($_SESSION['greet-message'])){
-
-        ?>
-            <div class="modal" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-            <div class="modal-body text-bg-dark rounded">
-            <div class="spinner-border text-primary d-flex m-auto" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div id="greet-message" class="d-none text-center"><i class="fa-solid fa-check text-white rounded-circle bg-gradient" style="padding:5px; background-color:royalblue"></i> Submitted Successfully</div>
-            </div>
-            </div>
-        </div>
-        </div>
             <?php
+      if (isset($_SESSION['error'])) {
+        $error = $_SESSION['error'];
+        ?>
+        <div class="errorMessage col-lg-3 border rounded fs-5 position-absolute end-0 top-0 m-2 text-center d-flex flex-column align-items-center text-white" id="error-message" style="height:180px;background-color:rgb(96, 92, 92)">
+            <div class="w-100 h-100 text-center position-relative" style="background:linear-gradient(#2F2462,#001520);">
+                <div class="text-bg-dark bg-gradient p-2 rounded" id="submit-btn">
+                <i class="fa-solid fa-xmark position-absolute end-0 mt-2 me-3" id="close-mark"></i>
+                <span>Error Message</span>
+                </div>
+                <div style="height:70%;display:flex;align-items:center;justify-content:center">
+                    <p> <i class="fa-solid fa-xmark text-bg-danger p-2 rounded-circle"></i> <?php echo "$error"; ?></p>
+                </div>
+                <div class="position-absolute bottom-0 rounded" id="loading" style="background:linear-gradient(skyblue,royalblue,skyblue); width:100%; height:10px"></div>
+            </div>
+            <script>
+    const loading = document.getElementById('loading');
+    const errorMessage = document.getElementById('error-message');
+    const closeErrorPrompt = document.getElementById('close-mark');
+    
+    closeErrorPrompt.addEventListener('click',function(){
+           errorMessage.classList.add('hidden');             
+    })
+    const decreaseWidth = () => {
+        loading.style.width = (parseFloat(loading.style.width) - 1) + "%";
+        
+        if (parseFloat(loading.style.width) <= 0) {
+            clearInterval(intervalId);
+
+            
+            // Unset the session variable directly in the same file
+            <?php unset($_SESSION['error']); ?>
+
+            // Apply smooth transition to hide the error message
+            errorMessage.classList.add('hidden');
+        }
+    };
+
+    const intervalId = setInterval(decreaseWidth, 35);
+</script>
+
+        </div>
+        <?php
+} else if (isset($_SESSION['greet-message'])) {
+?>
+    <?php
+                    
                         echo "
                         <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var successModal = new bootstrap.Modal(document.getElementById('exampleModalToggle'));
-                            var spinner = document.querySelector('.spinner-border');
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var successModal = new bootstrap.Modal(document.getElementById('exampleModalToggle'));
+                                var animation = document.getElementById('animation container');
                                 var greetMessage = document.querySelector('#greet-message');
                                 let modalBody = document.querySelector('.modal-body');
                                 successModal.show();
                                 
                                 setTimeout(function () {
-                                    modalBody.removeChild(spinner);
+                                    // spinner.style.display = 'none';
+                                    modalBody.removeChild(animation);
                                     greetMessage.classList.remove('d-none');
-                                }, 3000); // Close the modal after 3 seconds (3000 milliseconds)
+                                }, 2500); // Close the modal after 3 seconds (3000 milliseconds)
                                 
                                 setTimeout(function(){
                                     window.location.href='/connect2local/user/customer/activities/register/form/customer-verification.php';
-                                },5000);
+                                },3000);
                             });
-                            </script>
-                            ";
+                            </script>";
                             
                             unset($_SESSION['greet-message']);
                             unset($_SESSION['error']);
                         }
-                    }                    
-                    ?>
-            
+                            
+            ?>
         </div>
-    </div>
     <fieldset class="border p-4 rounded shadow position-relative" id="form-fieldset" style="background:linear-gradient(rgba(40, 1, 1, 0.413),rgba(6, 9, 20, 0.71));">
         <legend class="h2 fw-bold text-center mb-4 text-white">Contact Information</legend>
             

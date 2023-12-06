@@ -3,9 +3,19 @@
     padding:0;
     box-sizing: border-box;
 }
+#error-message {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.5s ease, height 0.5s ease;
+}
 
-#error-message{
-    background:url('/connect2local/asset/image/background/error-bg.png') no-repeat;
+#error-message.hidden {
+    opacity: 0;
+    height: 0;
+}
+
+.errorMessage{
+    background:red;
     background-size:100% 100%;
 }
 #help-modal-bg{

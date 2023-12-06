@@ -1,0 +1,6 @@
+# Ignore the "vendor" folder
+/vendor/
+
+# Ignore composer files
+/composer.json
+/composer.lock
