@@ -29,7 +29,7 @@
             $timestamp = time(); // Get current timestamp
             $randomString = bin2hex(random_bytes(2)); // Generate a shorter random string (adjust length as needed)
         
-            $filename = $timestamp . $randomString . '.txt'; // Combine timestamp, shorter random string, and file extension
+            $filename = $timestamp . $randomString . '.xlsx'; // Combine timestamp, shorter random string, and file extension
         
             return $filename;
         }

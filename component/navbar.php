@@ -12,6 +12,24 @@
       </div>
 </div>
 
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to logout?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="/connect2local/logout.php" class="btn btn-primary">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="register-option" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
            <div class="modal-content">
@@ -59,7 +77,7 @@
           </div>
         </div>
       </div>
-       <nav class="navbar text-bg-dark " id="navbar">
+       <nav class="navbar text-bg-dark" id="navbar">
         <div class="container" >
             <div class="bg-white rounded-circle" data-bs-target="#logoImage" data-bs-toggle="modal">
                 <img src="/connect2local/asset/image/home/logo/connect2local.png" style="height:80px;width:80px;">
@@ -117,18 +135,16 @@
         }
 
         if(isset($_SESSION['registered'])){
-        echo <<<EOD
-                <script>
-                    var btn = document.getElementById('btn-signup');
+                    echo '<script>
+                    var btn = document.getElementById("btn-signup");
                     btn.innerHTML = "Logout";
-                    btn.removeAttribute("data-bs-toggle");
-                    btn.removeAttribute("data-bs-target");
-                    btn.addEventListener('click', function() {
-                        window.location.href = "/connect2local/user/customer/activities/logout/logout.php";
-                    });
-                </script>
-        EOD;
-            reset_session();
+                    btn.setAttribute("data-bs-toggle","modal");
+                    btn.setAttribute("data-bs-target","#logoutModal");
+                    // btn.addEventListener("click", function() {
+                    //     window.location.href = "/connect2local/user/customer/activities/logout/logout.php";
+                    // });
+                </script>';
+                reset_session();
         } else{
             echo <<<EOD
                 <script>

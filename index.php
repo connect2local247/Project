@@ -41,17 +41,13 @@
     <title>Connect2Local - Home Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/connect2local/asset/css/style.css">
-
-    <style>
-
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <!-- <style>
         #body{
             background-image:linear-gradient(royalblue,powderblue) !important;
             background-size:100% 100%;
-        }
-
-        
-    </style>
+        } 
+    </style> -->
 </head>
 <body id="body">
     
@@ -61,12 +57,12 @@
                 include "./component/navbar.php";
             ?>
         </nav>
-        <section class="image-slider bg-primary bg-gradient" style="margin-top:1px;height:70vh;width:100%">
-            <?php
-                include "./component/slider.php";
-            ?>
-        </section>
     </header>
+    <section class="image-slider bg-primary bg-gradient" style="height:70vh;width:100%">
+        <?php
+            include "./component/slider.php";
+        ?>
+    </section>
 
     <section class="intro-content mt-3">
         <div class="container">

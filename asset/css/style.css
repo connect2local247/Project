@@ -4,6 +4,59 @@
     box-sizing: border-box;
 }
 
+#error-message{
+    background:url('/connect2local/asset/image/background/error-bg.png') no-repeat;
+    background-size:100% 100%;
+}
+#help-modal-bg{
+    background:linear-gradient(rgba(59, 39, 161, 0.395),rgba(0, 17, 127, 0.515));
+    color:white;
+}
+
+.data-color{
+    color:rgb(238, 255, 0);
+    font-family:Arial, Helvetica, sans-serif;
+    letter-spacing:2px;
+    font-size:0.9rem;
+    text-shadow:black 0 0 10px;
+    font-weight: 500;
+}
+.format-color{
+    color:rgb(0, 255, 47);
+    font-family:Arial, Helvetica, sans-serif;
+    letter-spacing:2px;
+    font-size:0.9rem;
+    text-shadow:black 0 0 10px;
+    font-weight: 500;
+}
+
+.field-color{
+    color:rgb(255, 0, 106);
+    letter-spacing:1px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-shadow:black 2px 2px 5px;
+}
+
+.guideline-color{
+    color:orange;
+    letter-spacing:1px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-shadow:black 2px 2px 5px;
+}
+
+ #form-body{
+    background:url("/connect2local/asset/image/background/login-bg.jpg") no-repeat;
+    background-size:100% 100%;
+} 
+
+#previous-btn{
+    background:linear-gradient(rgba(255, 34, 0, 0.527),rgba(255, 0, 144, 0.499)) ;
+}
+#submit-btn{
+    background:linear-gradient(rgba(174, 0, 255, 0.527),rgba(255, 0, 144, 0.499)) !important;
+}
+
+
 #btn-signup{
     background:linear-gradient(orange,red) !important;   
 }

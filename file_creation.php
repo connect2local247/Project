@@ -47,10 +47,13 @@
 
         // echo "Data inserted successfully!";
 
-function notification_file_create($email,$username,$filename,$path){
+function notification_file_create($email,$user,$filename,$path){
     $filename = createUniqueFilename();
 
     
-    $excelFilePath = './database/user118.xlsx';
+    $excelFilePath = "./database/$user/notification file/$filename";
+
+    $spreadsheet = file_exists($excelFilePath) ? \PhpOffice\PhpSpreadsheet\IOFactory::load($excelFilePath) : new Spreadsheet();
+
 }
 ?>

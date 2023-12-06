@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/connect2local/asset/css/style.css">
 </head>
-<body>
+<body id="form-body" style="height:100vh;width:100%">
 <div class="modal" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -82,16 +82,16 @@
                         }
                 ?>
             </div>
-            <fieldset class="border p-4 rounded-2" id="form-fieldset">
-                <legend class="text-center fs-3 fw-bold my-4">Email Verification</legend>
+            <fieldset class="border p-4 rounded-2" id="form-fieldset" style="background:linear-gradient(rgba(40, 1, 1, 0.413),rgba(6, 9, 20, 0.71));">
+                <legend class="text-center fs-3 fw-bold my-4 text-white">Email Verification</legend>
                 <div class="mt-2">
-                    <input type="text" name="user-code" class="form-control py-2" placeholder="Enter Security Code" id="otp" value="<?php if(isset($_SESSION['user-code'])) echo $_SESSION['user-code'];?>" required>
+                    <input type="text" name="user-code" class="form-control py-2 border-4 border-dark" placeholder="Enter Security Code" id="otp" value="<?php if(isset($_SESSION['user-code'])) echo $_SESSION['user-code'];?>" required>
                 </div>
                 <div class="mt-2 d-flex justify-content-end px-2">
-                    <a href="/connect2local/user/customer/activities/register/code/resend-code.php" class="nav-link text-primary">Resend Code</a>
+                    <a href="/connect2local/user/customer/activities/register/code/resend-code.php" class="nav-link text-white">Resend Code</a>
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
-                    <input type="submit" name="submit" value="Submit"  class="btn text-bg-dark bg-gradient py-2 px-5 rounded-pill" >
+                    <input type="submit" name="submit" value="Submit" id="submit-btn" class="btn text-bg-dark bg-gradient py-2 px-5 rounded-pill" >
                 </div>
             </fieldset>
         </form>
